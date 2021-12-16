@@ -1,0 +1,19 @@
+.article-container {
+    width: 80%;
+    /* margin: 60px auto; */
+    padding: 20px 40px;
+    background: #fff;
+    box-shadow: 8px 8px 8px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+.nav-container {
+    position: fixed;
+    right: 20px;
+    top: 100px;
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px solid #eee;
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
+    transform: translate(0, 0);
+    transition: transform 500ms ease;
+}
