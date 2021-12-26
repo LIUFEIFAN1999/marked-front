@@ -57,7 +57,7 @@ export default function Header(props) {
   let navigate = useNavigate()
 
   const handleLogout = ()=>{
-    axios.post('http://localhost:8080/logout',null,{
+    axios.post('http://localhost:9090/logout',null,{
       headers:{
         'content-type': 'application/json',
         'Authorization': window.localStorage.getItem('Authorization')

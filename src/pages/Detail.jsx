@@ -35,18 +35,18 @@ export default function Detail() {
 
 
       async function getHotArticles(authorId){
-        const url = 'http://localhost:8080/blog/articles/hot/byAuthor/' + authorId
+        const url = 'http://localhost:9090/blog/articles/hot/byAuthor/' + authorId
         const list = await request(url)
         list.filter(article=>{
-          article.avatar = 'http://localhost:8080' + article.avatar
+          article.avatar = 'http://localhost:9090' + article.avatar
         })
         setHotArticles([...list])
       }
 
       async function getArticle(){
-        const url = "http://localhost:8080/blog/articles/id/" + params.articleId
+        const url = "http://localhost:9090/blog/articles/id/" + params.articleId
         const article = await request(url)
-        article.content = 'http://localhost:8080' + article.content
+        article.content = 'http://localhost:9090' + article.content
         setArticle(article)
         console.log(article)
         getContent(article.content)
@@ -54,7 +54,7 @@ export default function Detail() {
 
 
       async function getAuthor(){
-        const url = 'http://localhost:8080/blog/users/byArticle/'+ params.articleId
+        const url = 'http://localhost:9090/blog/users/byArticle/'+ params.articleId
         console.log(params.articleId)
         const user = await request(url)
         if(user.avatar === null){

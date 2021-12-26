@@ -23,7 +23,7 @@ export default function CardList() {
     }, [])
 
     async function verify(){
-       const user =  await request('http://localhost:8080/verify',null,{
+       const user =  await request('http://localhost:9090/verify',null,{
             headers:{
                 'content-type': 'application/json',
                 'Authorization':window.localStorage.getItem('Authorization')
@@ -35,7 +35,7 @@ export default function CardList() {
     }
 
     async function getLinks(){
-        const links = await request('http://localhost:8080/blog/collection/list', null, null)
+        const links = await request('http://localhost:9090/blog/collection/list', null, null)
         setCards(links)
     }
 
@@ -55,7 +55,7 @@ export default function CardList() {
     }
 
     async function add(title, description, link){
-        const url = 'http://localhost:8080/blog/collection/add'
+        const url = 'http://localhost:9090/blog/collection/add'
         const data = {
             title:title,
             description:description,

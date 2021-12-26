@@ -46,7 +46,7 @@ export default function FeaturedPost(props) {
               </Typography>
               <Link  to={`/blogs/detail/${post.id}`} style={{textDecoration:'none'}}>
                 <Typography variant="subtitle1" color="primary">
-                  Continue reading...
+                  点击阅读
                 </Typography>
               </Link>
             </CardContent>

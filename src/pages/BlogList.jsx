@@ -15,7 +15,7 @@ export default function BlogList(props) {
     useEffect(() => {
         const path = params.tagId === undefined ? '':params.tagId
         async function getBlogs(){
-            await axios.post('http://localhost:8080/blog/articles/list/'+path,{
+            await axios.post('http://localhost:9090/blog/articles/list/'+path,{
               "page": 1,
               "pageSize": 10
             })
@@ -28,7 +28,7 @@ export default function BlogList(props) {
             }).then((blogs)=>{
               const list = [...blogs]
               list.filter(post=>{
-                post.avatar = "http://localhost:8080"+post.avatar
+                post.avatar = "http://localhost:9090"+post.avatar
               })
               setPosts([...list])
             }).catch((error)=>{
@@ -36,7 +36,7 @@ export default function BlogList(props) {
           }
 
           async function getKeyword(){
-            await axios.post('http://localhost:8080/blog/articles/list/keyword/'+ props.keyword,{
+            await axios.post('http://localhost:9090/blog/articles/list/keyword/'+ props.keyword,{
               "page": 1,
               "pageSize": 10
             })
@@ -49,11 +49,11 @@ export default function BlogList(props) {
             }).then((blogs)=>{
               const list = [...blogs]
               list.filter(post=>{
-                post.avatar = "http://localhost:8080"+post.avatar
+                post.avatar = "http://localhost:9090"+post.avatar
               })
               setPosts([...list])
             }).catch((error)=>{
-              
+
             })
           }
           if(props.keyword === undefined){

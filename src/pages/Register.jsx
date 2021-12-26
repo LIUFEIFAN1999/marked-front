@@ -57,6 +57,11 @@ const useStyles = makeStyles((theme) => ({
         color:theme.palette.primary.main,
     }
   },
+  div:{
+    background:'white',
+    width:'100%',
+    height:'100%'
+  }
 }));
 
 
@@ -97,7 +102,7 @@ export default function SignUp(props) {
     const fd = new FormData()
     fd.append('image', file, file.name)
 
-    axios.post('http://localhost:8080/blog/articles/uploadImg',fd)
+    axios.post('http://localhost:9090/blog/articles/uploadImg',fd)
     .then((response)=> response.data)
     .then((response)=> {
       if(response.success === true){
@@ -123,7 +128,7 @@ export default function SignUp(props) {
         setError(true)
     }
     else{
-        axios.post('http://localhost:8080/register',{
+        axios.post('http://localhost:9090/register',{
             username:username,
             password:password,
             email:email,
@@ -172,7 +177,8 @@ export default function SignUp(props) {
   }
 
   return (
-    <Container component="main" maxWidth="xs" className={classes.root}>
+    <div className={classes.div}>
+      <Container component="main" maxWidth="xs" className={classes.root}>
       <Snackbar open={error} autoHideDuration={5000} onClose={handleErrorClose}>
         <Alert onClose={handleErrorClose} severity="error">
             {message}
@@ -261,5 +267,6 @@ export default function SignUp(props) {
         <Copyright />
       </Box>
     </Container>
+    </div>
   );
 }
