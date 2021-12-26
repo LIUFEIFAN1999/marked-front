@@ -32,7 +32,6 @@ export default function ImgMediaCard(props) {
   useEffect(() => {
       const uri = Url2Icon(props.link)
       setImg(uri)
-      console.log(img)
   }, [props.link])
 
 

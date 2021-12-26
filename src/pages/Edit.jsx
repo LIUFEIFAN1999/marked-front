@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import MyEditor from '../Component/Edit/MyEditor'
 import { Container, Button, Snackbar, Grid, TextField } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
@@ -9,11 +9,12 @@ import BackTop from '../Component/Edit/BackTop'
 import axios from 'axios'
 import TagButton from '../Component/Edit/TagButton';
 import Tag from '../Component/Edit/Tags';
+import {useNavigate} from 'react-router-dom'
 
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
-  }
+}
 
 const useStyles = makeStyles({
     textField:{
@@ -41,7 +42,33 @@ export default function Edit() {
     const [error, setError] = useState(false);
     const [errorMsg, setErrorMsg] = useState('')
     const [tagList, setTagList] = useState([])
+    const [login, setLogin] = useState(false)
     const tags = []
+    let navigate = useNavigate()
+
+    useEffect(() => {
+        axios.post('http://localhost:8080/verify',null,{
+            headers:{
+                'content-type': 'application/json',
+                'Authorization':window.localStorage.getItem('Authorization')
+            }
+        })
+        .then((response)=> response.data)
+        .then((response)=> {
+          if(response.success === true){
+            return response.data
+          }
+          throw response.message
+        }).then((user)=>{
+            if(user === null){
+                navigate('/login', {replace: true})
+            }
+            setLogin(true)
+        }).catch((error)=>{
+          setErrorMsg(error)
+          setError(true)
+        })
+    }, [])
 
 
     const addTag = (tag) => {
@@ -93,14 +120,12 @@ export default function Edit() {
         .then((response)=> response.data)
         .then((response)=> {
           if(response.success === true){
-            console.log(response.data)
             return response.data
           }
           throw response.message
         }).then((image)=>{
             submit(image)
         }).catch((error)=>{
-          console.log(error)
           setErrorMsg("博客发送失败，请重试!")
           setError(true)
         })
@@ -116,7 +141,6 @@ export default function Edit() {
         }).then((response)=> response.data)
         .then((response)=> {
           if(response.success === true){
-            console.log(response.data)
             return response.data
           }
           throw response.message
@@ -124,14 +148,13 @@ export default function Edit() {
             setSuccess(true)
             setTimeout(goBack, 1000)
         }).catch((error)=>{
-          console.log(error)
           setErrorMsg("博客发送失败，请重试!")
           setError(true)
         })
     }
 
     const goBack = ()=>{
-        window.history.go(-1)
+        navigate('/blogs/list')
     }
 
     const handleSubmit = ()=>{
@@ -193,7 +216,7 @@ export default function Edit() {
                     </Grid>
                     <Grid item xs={12}>
                         <div>
-                            <MyEditor onChange={getContent}/> 
+                            {login && <MyEditor onChange={getContent}/> }
                         </div>
                     </Grid>
                 </Grid>

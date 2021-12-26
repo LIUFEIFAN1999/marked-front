@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Grid } from '@material-ui/core';
 import UserInfo from '../Component/User/UserInfo';
-import ArticleList from '../Component/Detail/ArticleList';
+import ArticleList from '../Component/BlogDetail/ArticleList';
 import Article from '../Component/BlogDetail/Article'
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
@@ -10,7 +10,7 @@ import BackTop from '../Component/Edit/BackTop'
 
 export default function Detail() {
 
-  const [md, handleMD] = useState('loading... ...');
+  const [md, handleMD] = useState('loading......');
   const [user, setUser] = useState({})
   const [article, setArticle] = useState({})
   const [hotArticles, setHotArticles] = useState([])
@@ -67,11 +67,11 @@ export default function Detail() {
 
       async function getContent(url){
         const txt = await fetch(url).then((resp) => resp.text())
+        console.log(txt)
         handleMD(txt)
       }
       getArticle()
       getAuthor()
-
   }, [md, params]);
 
   return (

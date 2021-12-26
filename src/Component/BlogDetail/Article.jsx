@@ -6,6 +6,16 @@ import Summary from './Summary';
 
 const Help = (props) => {
 
+  const BlogImage = (props) => {
+    return <img {...props} style={{ maxWidth: "100%" }} />
+  }
+
+const renderers = {
+  //This custom renderer changes how images are rendered
+  //we use it to constrain the max width of an image to its container
+  //remarkPlugins={[[gfm, { singleTilde: false }]]}
+  image: BlogImage,
+  };
 
   return (
     <div style={{color:'black'}}>
@@ -16,9 +26,10 @@ const Help = (props) => {
        <Summary time={props.time} view ={props.view} title={props.title} tags={props.tags}/>
       </div>
       <div className="article-container">
-        <ReactMarkdown plugins={[[gfm, { singleTilde: false }]]}>
-          {props.md}
-        </ReactMarkdown>
+        
+        <ReactMarkdown  allowDangerousHtml remarkPlugins={[[gfm, { singleTilde: false }]]}  escapeHtml={false} renderers={renderers} children={props.md}/>
+          {/* {props.md}
+        </ReactMarkdown> */}
       </div>
     </div>
   );

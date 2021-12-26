@@ -5,7 +5,7 @@ import FeaturedPost from '../Component/Blog/FeaturedPost'
 import MainFeaturedPost from '../Component/Blog/MainFeaturedPost'
 import { useParams } from 'react-router-dom'
 
-export default function BlogList() {
+export default function BlogList(props) {
 
     const [posts, setPosts] = useState([])
     const params = useParams()
@@ -22,25 +22,47 @@ export default function BlogList() {
             .then((response)=> response.data)
             .then((response)=> {
               if(response.success === true){
-                console.log(response.data)
                 return response.data
               }
               throw response.message
             }).then((blogs)=>{
-                
-              console.log(blogs)
               const list = [...blogs]
               list.filter(post=>{
                 post.avatar = "http://localhost:8080"+post.avatar
               })
               setPosts([...list])
             }).catch((error)=>{
-              console.log(error)
             })
           }
-          getBlogs()
-          console.log(params)
-    }, [params])
+
+          async function getKeyword(){
+            await axios.post('http://localhost:8080/blog/articles/list/keyword/'+ props.keyword,{
+              "page": 1,
+              "pageSize": 10
+            })
+            .then((response)=> response.data)
+            .then((response)=> {
+              if(response.success === true){
+                return response.data
+              }
+              throw response.message
+            }).then((blogs)=>{
+              const list = [...blogs]
+              list.filter(post=>{
+                post.avatar = "http://localhost:8080"+post.avatar
+              })
+              setPosts([...list])
+            }).catch((error)=>{
+              
+            })
+          }
+          if(props.keyword === undefined){
+            getBlogs()
+          }
+          else{
+            getKeyword()
+          }
+    }, [params, props])
 
     return (
         <React.Fragment>

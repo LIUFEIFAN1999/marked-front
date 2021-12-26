@@ -40,7 +40,7 @@ export default function MainFeaturedPost(props) {
   const { post } = props;
 
   return (
-    <Link to={`/blog/detail/${post.id}`} style={{textDecoration:'none'}}>
+    <Link to={`/blogs/detail/${post.id}`} style={{textDecoration:'none'}}>
         <Paper className={classes.mainFeaturedPost} style={{ backgroundImage: `url(${post.avatar})` }}>
           {/* Increase the priority of the hero background image */}
           {<img style={{ display: 'none' }} src={post.avatar} alt={post.title} />}

@@ -4,6 +4,7 @@ import axios from 'axios'
 import Add from './Add'
 import { Snackbar, Grid } from '@material-ui/core'
 import MuiAlert from '@material-ui/lab/Alert';
+import { useNavigate } from 'react-router-dom'
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -14,19 +15,33 @@ export default function CardList() {
     const [success, setSuccess] = useState(false)
     const [error, setError] = useState(false)
     const [message, setMessage] = useState('')
+    let navigate = useNavigate()
 
     useEffect(() => {
+        verify()
         getLinks()
     }, [])
 
+    async function verify(){
+       const user =  await request('http://localhost:8080/verify',null,{
+            headers:{
+                'content-type': 'application/json',
+                'Authorization':window.localStorage.getItem('Authorization')
+            }
+        })
+        if(user === null){
+            navigate('/login', {replace: true})
+        }
+    }
+
     async function getLinks(){
-        const links = await request('http://localhost:8080/blog/collection/list', null)
+        const links = await request('http://localhost:8080/blog/collection/list', null, null)
         setCards(links)
     }
 
-    const request = (url, data)=>{
+    const request = (url, data, config)=>{
         return (
-        axios.post(url, data)
+        axios.post(url, data, config)
         .then((response)=>response.data)
         .then((response)=>{
             if(response.success === true){
@@ -34,7 +49,6 @@ export default function CardList() {
             }
             throw response.message
         }).catch((error)=>{
-            console.log(error)
             setMessage(error)
             setError(true)
         }))
@@ -48,7 +62,6 @@ export default function CardList() {
             link:link
         }
         const msg = await request(url, data)
-        console.log(msg)
         setMessage(msg)
         setSuccess(true)
         getLinks()

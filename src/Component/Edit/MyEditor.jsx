@@ -12,7 +12,7 @@ export default class MyEditor extends Component {
                     data="<p>Edit your Blog!</p><br><br><br><br><br><br><br><br><br><br>"
                     onReady={ editor => {
                         // You can store the "editor" and use when it is needed.
-                        console.log( 'Editor is ready to use!', editor );
+                        console.log( 'Editor is ready to use!');
                     } }
                     onChange={ ( event, editor ) => {
                         // const data = editor.getData();

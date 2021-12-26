@@ -28,7 +28,7 @@ export default function Chips(props) {
     console.log(index)
     setSelect(colors[index])
     console.log(select)
-  }, [])
+  }, [select])
 
   return (
     <div className={classes.root}>
