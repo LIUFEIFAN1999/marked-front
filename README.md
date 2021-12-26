@@ -4,7 +4,7 @@ now finish blogs module
 
 the backend github address is https://github.com/LIUFEIFAN1999/marked-server
 
-You can browser this website on your own screen via http://http://106.15.184.199
+You can browser this website on your own screen via http://106.15.184.199
 
 Some pages of this website:
 ![image](https://user-images.githubusercontent.com/61142306/147418485-b23fb361-09dd-4c0d-9f1f-57ae6ce8c401.png)
