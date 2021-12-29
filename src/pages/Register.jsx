@@ -102,7 +102,7 @@ export default function SignUp(props) {
     const fd = new FormData()
     fd.append('image', file, file.name)
 
-    axios.post('http://localhost:9090/blog/articles/uploadImg',fd)
+    axios.post('http://106.15.184.199:9090/blog/articles/uploadImg',fd)
     .then((response)=> response.data)
     .then((response)=> {
       if(response.success === true){
@@ -128,7 +128,7 @@ export default function SignUp(props) {
         setError(true)
     }
     else{
-        axios.post('http://localhost:9090/register',{
+        axios.post('http://106.15.184.199:9090/register',{
             username:username,
             password:password,
             email:email,

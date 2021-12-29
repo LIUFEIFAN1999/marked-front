@@ -99,7 +99,7 @@ export default function SignInSide(props) {
         setError(true)
     }
     else{
-        axios.post('http://localhost:9090/login',{
+        axios.post('http://106.15.184.199:9090/login',{
             username:username,
             password:password,
         })

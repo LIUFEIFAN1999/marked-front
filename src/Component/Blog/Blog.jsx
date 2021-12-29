@@ -10,7 +10,7 @@ export default function Blog(props){
 
     useEffect(() => {
         async function getTags(){
-          await axios.get('http://localhost:9090/blog/tags/list')
+          await axios.get('http://106.15.184.199:9090/blog/tags/list')
           .then((response)=>{
           setSections(response.data.data)
           }).catch((error)=>{

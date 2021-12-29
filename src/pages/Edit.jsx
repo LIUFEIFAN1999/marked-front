@@ -47,7 +47,7 @@ export default function Edit() {
     let navigate = useNavigate()
 
     useEffect(() => {
-        axios.post('http://localhost:9090/verify',null,{
+        axios.post('http://106.15.184.199:9090/verify',null,{
             headers:{
                 'content-type': 'application/json',
                 'Authorization':window.localStorage.getItem('Authorization')
@@ -116,7 +116,7 @@ export default function Edit() {
         const fd = new FormData()
         fd.append('image', file, file.name)
 
-        axios.post('http://localhost:9090/blog/articles/uploadImg',fd)
+        axios.post('http://106.15.184.199:9090/blog/articles/uploadImg',fd)
         .then((response)=> response.data)
         .then((response)=> {
           if(response.success === true){
@@ -132,7 +132,7 @@ export default function Edit() {
     }
 
     const submit = (avatar)=>{
-        axios.post('http://localhost:9090/blog/articles/add',{
+        axios.post('http://106.15.184.199:9090/blog/articles/add',{
             title: title,
             description:description,
             tags:tags,
