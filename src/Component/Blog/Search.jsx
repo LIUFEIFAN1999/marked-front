@@ -6,7 +6,7 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import DirectionsIcon from '@material-ui/icons/Directions';
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,19 +21,17 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(1),
     flex: 1,
   },
-  divider: {
-    height: 28,
-    margin: 4,
-  },
 }));
 
 
 
 export default function CustomizedInputBase(props) {
   const classes = useStyles();
+  const navigate = useNavigate()
 
   const handleChange = event =>{
     props.handleKeyword(event.target.value)
+    navigate('/blogs/search')
   }
 
   return (
@@ -43,15 +41,15 @@ export default function CustomizedInputBase(props) {
         placeholder="Search Blogs"
         inputProps={{ 'aria-label': 'search google maps' }}
         onChange={handleChange}
+        onBlur={handleChange}
       />
-      <IconButton type="submit" className={classes.iconButton} aria-label="search" 
+      {/* <IconButton type="submit" className={classes.iconButton} aria-label="search" 
         component={Link}
         to='search'>
         <SearchIcon />
-      </IconButton>
-      <Divider className={classes.divider} orientation="vertical" />
-      <IconButton color="primary" className={classes.iconButton} aria-label="directions">
-        <DirectionsIcon />
+      </IconButton> */}
+      <IconButton type="submit" className={classes.iconButton} aria-label="search">
+        <SearchIcon />
       </IconButton>
     </Paper>
   );

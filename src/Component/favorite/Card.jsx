@@ -12,12 +12,14 @@ import Url2Icon from '../../utils/Url2Icon'
 const useStyles = makeStyles({
     card: {
       display: 'flex',
+      minHeight:160
     },
     cardDetails: {
       flex: 1,
       whiteSpace:"nowrap",
       textOverflow:"ellipsis",
       overflow:"hidden",
+      paddingTop:10
     },
     cardMedia: {
       width: 160,
@@ -48,16 +50,6 @@ export default function ImgMediaCard(props) {
             <Typography variant="subtitle1" paragraph style={{marginTop:10}}>
                 {props.description}
             </Typography>
-            <Grid container direction='row'>
-                <Grid item >
-                    <ArrowRightAltIcon color='primary' style={{fontSize:45}}/>
-                </Grid>
-                <Grid item>
-                    <Link component={'span'} style={{fontSize:20, textDecoration:"none", marginLeft:20}}>
-                        Continue reading...
-                    </Link>
-                </Grid>
-            </Grid>
           </CardContent>
         </div>
         }

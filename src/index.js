@@ -3,11 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {BrowserRouter, HashRouter} from 'react-router-dom'
+import {HashRouter} from 'react-router-dom'
+import UserInfo from './Component/User/UserInfo';
+import MarkNav from 'markdown-navbar';
+import 'markdown-navbar/dist/navbar.css';
+import TagPool from './Component/Detail/TagPool';
 
 ReactDOM.render(
   <HashRouter>
     <App />
+    {/* <UserInfo/> */}
+    {/* <TagPool/> */}
   </HashRouter>,
   document.getElementById('root')
 );

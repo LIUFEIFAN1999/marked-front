@@ -43,10 +43,12 @@ export default function Edit() {
     const [errorMsg, setErrorMsg] = useState('')
     const [tagList, setTagList] = useState([])
     const [login, setLogin] = useState(false)
+    const [oldTags, setoldTags] = useState([])
     const tags = []
     let navigate = useNavigate()
 
     useEffect(() => {
+        //验证是否登录
         axios.post('http://106.15.184.199:9090/verify',null,{
             headers:{
                 'content-type': 'application/json',
@@ -68,22 +70,36 @@ export default function Edit() {
           setErrorMsg(error)
           setError(true)
         })
+        //获取已有标签
+        async function getTags(){
+            await axios.get('http://106.15.184.199:9090/blog/tags/list')
+            .then((response)=>{
+                const temp = []
+                const list = response.data.data
+                list.forEach(element=>{
+                    temp.push(element.name)
+                })
+                setTagList([...temp])
+            }).catch((error)=>{
+            })
+          }
+        getTags();
     }, [])
 
 
     const addTag = (tag) => {
         if(tagList.includes(tag)){
-            setErrorMsg("标签添加重复!")
-            setError(true)
-        }
-        else if(tagList.length >= 4){
-            setErrorMsg("最多添加四个标签!")
+            setErrorMsg("不能重复添加标签!")
             setError(true)
         }
         else if(tag !== ""){
             const list = [...tagList]
             list.push(tag)
             setTagList([...list])
+        }
+        else if(tagList.length >= 5){
+            setErrorMsg("最多添加5个标签!")
+            setError(true)
         }
     }
 
@@ -125,7 +141,7 @@ export default function Edit() {
           throw response.message
         }).then((image)=>{
             submit(image)
-        }).catch((error)=>{
+        }).catch(()=>{
           setErrorMsg("博客发送失败，请重试!")
           setError(true)
         })
@@ -196,23 +212,23 @@ export default function Edit() {
                 <BackTop/>
                 <Grid container direction='row' spacing={2} className={classes.grid}>
                     <Grid item xs={12}>
-                        <TextField required id="standard-required" label="Title" onChange={getTitle} className={classes.textField} />
+                        <TextField required id="standard-required" label="标题" onChange={getTitle} className={classes.textField} />
                     </Grid>
                     <Grid item xs={12}>
-                        <TextField required id="standard-required" label="Discription" onChange={getDescription} className={classes.textField} />
+                        <TextField required id="standard-required" label="描述" onChange={getDescription} className={classes.textField} />
                     </Grid>
-                    <Grid item xs={2}>
-                        <TagButton addTag={addTag}/>
+                    <Grid item xs>
+                        <TagButton addTag={addTag} />
                     </Grid>
                     {
                         tagList.map((tag)=>(
-                                <Grid container item xs={2} key={tag}>
+                                <Grid container item xs key={tag}>
                                     <Tag tag={tag} removeTag={removeTag}/>
                                 </Grid>
                             ))
                     }
                     <Grid item xs={12}>
-                        <UploadButton onUpdate={getFile} filename={file.name}/>
+                        <UploadButton onUpdate={getFile}/>
                     </Grid>
                     <Grid item xs={12}>
                         <Button variant="contained" color="primary" disableElevation onClick={handleSubmit} endIcon={<Icon>send</Icon>}>

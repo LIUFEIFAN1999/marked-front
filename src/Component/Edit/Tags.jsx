@@ -25,9 +25,7 @@ export default function Chips(props) {
 
   useEffect(() => {
     const index = Math.floor(Math.random()*2)
-    console.log(index)
     setSelect(colors[index])
-    console.log(select)
   }, [select])
 
   return (

@@ -1,5 +1,5 @@
 # marked-front
-An personal website with blogs, songs and vocabulary
+A personal website with blogs, songs and vocabulary
 now finish blogs module
 
 the backend github address is https://github.com/LIUFEIFAN1999/marked-server

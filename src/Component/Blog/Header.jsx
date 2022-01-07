@@ -50,10 +50,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Header(props) {
   const classes = useStyles();
-  const { sections, title, login } = props
+  const { sections, title} = props
   const [active, setActive] = useState(0)
   const [error, setError] = useState(false)
   const [message, setMesaage] = useState('')
+  const [login, setLogin] = useState(true)
   let navigate = useNavigate()
 
   const handleLogout = ()=>{
@@ -70,7 +71,7 @@ export default function Header(props) {
       }
       throw response.message
     }).then(()=>{
-        props.handleLogin(false)
+        setLogin(false)
         navigate('/blogs/list', {replace: true})
     }).catch((error)=>{
       setMesaage(error)
@@ -109,8 +110,8 @@ export default function Header(props) {
         </Typography>
         <Search handleKeyword={props.handleKeyword}/>
         {
-          login ?
-          <Button variant="outlined" size="small" color="inherit" startIcon={<ExitToAppIcon/>} onClick={handleLogout}>
+          props.login&&login?
+        <Button variant="outlined" size="small" color="inherit" startIcon={<ExitToAppIcon/>} onClick={handleLogout}>
           退 出
         </Button>
         :

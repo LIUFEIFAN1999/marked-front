@@ -29,10 +29,10 @@ export default function Tag(props) {
   return (
     <div>
       <Button variant="contained" color="primary" disableElevation onClick={handleClickOpen} startIcon={<LocalOfferIcon/>}>
-         添加标签
+         添加新标签
       </Button>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle >添加标签</DialogTitle>
+        <DialogTitle >新标签</DialogTitle>
         <DialogContent>
           <DialogContentText>
             输入标签名即可添加标签!

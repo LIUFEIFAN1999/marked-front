@@ -8,6 +8,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import AppsIcon from '@material-ui/icons/Apps';
+import { NavLink } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     root:{
@@ -21,6 +22,16 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor:"white",
         color:'black'
     },
+    navLink:{
+        color:'inherit',
+        textDecoration:'none',
+        '&:active':{
+            color:'inherit'
+        },
+        '&:hover':{
+            color:'primary'
+        }
+    }
   }));
 
 export default function ArticleList(props){
@@ -41,7 +52,7 @@ export default function ArticleList(props){
                     <Grid>
                         <List>
                             {list.map((article)=>(
-                                <ListItem key={article.id}>
+                                <ListItem key={article.id} component={NavLink} to={`/blogs/detail/${article.id}`} className={classes.navLink}>
                                     <ListItemAvatar>
                                         <Avatar variant="square" alt={article.title} src={article.avatar}/>
                                     </ListItemAvatar>

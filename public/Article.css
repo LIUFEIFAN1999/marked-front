@@ -8,12 +8,13 @@
   
 .nav-container {
     position: fixed;
-    right: 20px;
-    top: 100px;
+    right: 11px;
+    top: 120px;
     background-color: #fff;
-    border-radius: 5px;
-    border: 1px solid #eee;
     box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
     transform: translate(0, 0);
     transition: transform 500ms ease;
+    width:12%;
+    /* text-overflow:ellipsis; */
+    white-space:nowrap
 }

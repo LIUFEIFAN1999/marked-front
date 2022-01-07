@@ -73,7 +73,7 @@ export default function FormDialog(props) {
           </DialogContentText>
           <TextField
             margin="dense"
-            label="Title"
+            label="标题"
             fullWidth
             onChange={(event)=>{
               setTitle(event.target.value)
@@ -81,7 +81,7 @@ export default function FormDialog(props) {
           />
           <TextField
             margin="dense"
-            label="Description"
+            label="描述"
             fullWidth
             onChange={(event)=>{
               setDescription(event.target.value)
@@ -89,7 +89,7 @@ export default function FormDialog(props) {
           />
           <TextField
             margin="dense"
-            label="Link"
+            label="链接"
             fullWidth
             onChange={(event)=>{
               setLink(event.target.value)

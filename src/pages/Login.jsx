@@ -110,7 +110,6 @@ export default function SignInSide(props) {
           }
           throw response.message
         }).then((token)=>{
-            props.login(true)
             window.localStorage.setItem("Authorization", token)
             navigate('/blogs/list')
         }).catch((error)=>{

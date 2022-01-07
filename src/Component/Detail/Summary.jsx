@@ -14,7 +14,7 @@ export default function Summary(props) {
                         <TitleIcon style={{fontSize:80}}/>
                     </Grid>
                     <Grid item xs={11}>
-                        <Typography variant="h3" color="textPrimary" paragraph style={{marginTop:20}}>
+                        <Typography variant="h3" color="textPrimary" paragraph style={{marginTop:8}}>
                             {props.title}
                         </Typography>
                     </Grid>

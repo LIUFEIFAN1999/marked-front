@@ -142,7 +142,6 @@ export default function SignUp(props) {
           }
           throw response.message
         }).then((token)=>{
-            props.login(true)
             window.localStorage.setItem("Authorization", token)
             navigate('/blogs/list')
             console.log(token)
